@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+.Page-header-wrap {
+  background-color: #222;
+}
+
+.Page-header {
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  margin: 0 auto;
+  padding: 0px;
+  color: white;
+}
+
+.Page-logo {
+  animation: Page-logo-spin infinite 20s linear;
+  height: 60px;
+}
+.Page-header h2 {
+  margin: auto 5px;
+}
+
+.Page-intro {
+  font-size: large;
+}
+
+@keyframes Page-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
