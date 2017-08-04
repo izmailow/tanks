@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+
+.Page-intro {
+  font-size: large;
+}
+
+@keyframes Page-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

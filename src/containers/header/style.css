@@ -1,7 +1,3 @@
-body {
-  margin: 0;
-}
-
 .Page-header-wrap {
   background-color: #222;
 }
@@ -21,13 +17,4 @@ body {
 }
 .Page-header h2 {
   margin: auto 5px;
-}
-
-.Page-intro {
-  font-size: large;
-}
-
-@keyframes Page-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
