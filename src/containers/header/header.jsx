@@ -9,8 +9,8 @@ export class Header extends React.Component {
                 <div className="Page-header">
                     <img src={logo} className="Page-logo" alt="logo" />
                     <h2>Логотип мне нравится</h2>
-                    <span> USERNAME</span>
-                    <span>rating</span>
+                    <div> USERNAME</div>
+                    <div>rating</div>
                     <button>logout</button>
                 </div>
             </div>
