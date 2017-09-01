@@ -8,7 +8,7 @@ export class Header extends React.Component {
             <div className="Page-header-wrap">
                 <div className="Page-header">
                     <img src={logo} className="Page-logo" alt="logo" />
-                    <h2>Логотип мне нравится</h2>
+                    <h2>WEB sockets</h2>
                     <div> USERNAME</div>
                     <div>rating</div>
                     <button>logout</button>

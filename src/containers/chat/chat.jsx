@@ -1,5 +1,5 @@
 import React from 'react'
-import { Event } from 'react-socket-io';
+import io from 'socket.io-client'
 
 export class Chat extends React.Component {
 
@@ -7,19 +7,39 @@ export class Chat extends React.Component {
         messages: []
     }
 
-    onMessage = (message) => {
-        this.setState({
-            messages: [...this.state.messages, message.msg]
+    componentWillMount () {
+        this.socket = io('http://localhost:3001')
+        this.socket.on('chat message', message => {
+            this.setState({
+                messages: [...this.state.messages, message.msg]
+            })
+
+            if (this.state.messages.length > 3) {
+                clearTimeout(this.timer);
+
+                this.timer = setTimeout( () => {
+                    this.setState({
+                        messages: this.state.messages.splice(this.state.messages.length - 3)
+                    })
+                }, 3000)
+            }
         })
+    }
+
+    handleSend = event => {
+        if (event.keyCode === 13) {
+            this.socket.emit('chat message', { user: "Сервер", msg: event.target.value});
+            event.target.value = ''
+        }
     }
 
     render () {
         return (
             <div>
-                <Event event='chat message' handler={this.onMessage} />
                 <ul>
                     {this.state.messages.map((e, i) => (<li key={i}>{e}</li>))}
                 </ul>
+                <input type="text" onKeyUp={this.handleSend}/>
             </div>
         )
     }
