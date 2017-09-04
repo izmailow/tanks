@@ -1,5 +1,4 @@
 import React from 'react'
-import io from 'socket.io-client'
 import './style.css';
 
 export class Chat extends React.Component {
@@ -9,8 +8,7 @@ export class Chat extends React.Component {
     }
 
     componentWillMount () {
-        this.socket = io('http://localhost:3001')
-        this.socket.on('chat message', message => {
+        this.props.socket.on('chat message', message => {
             this.setState({
                 messages: [...this.state.messages, message.msg]
             })
@@ -29,7 +27,7 @@ export class Chat extends React.Component {
 
     handleSend = event => {
         if (event.keyCode === 13) {
-            this.socket.emit('chat message', { user: "Сервер", msg: event.target.value});
+            this.props.socket.emit('chat message', { user: "Сервер", msg: event.target.value});
             event.target.value = ''
         }
     }

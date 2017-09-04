@@ -8,14 +8,16 @@ app.get('/', function(req, res){
 
 const tanks = [
     {id: 1, positionX: 0, positionY: 0, level: 1},
-    {id: 2, positionX: 0, positionY: 0, level: 1},
-    {id: 3, positionX: 0, positionY: 0, level: 1},
-    {id: 4, positionX: 0, positionY: 0, level: 1},
+    {id: 2, positionX: 10, positionY: 10, level: 1},
+    {id: 3, positionX: 20, positionY: 20, level: 1},
+    {id: 4, positionX: 40, positionY: 0, level: 1},
 ]
 
 io.on('connection', function(socket){
 
     io.emit('chat message', { user: "Сервер", msg: 'Кое кто подключился'});
+
+    io.emit('move tank', tanks)
   
     socket.on('chat message', function(res){
         io.emit('chat message', {
