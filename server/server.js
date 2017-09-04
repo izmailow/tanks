@@ -6,8 +6,15 @@ app.get('/', function(req, res){
   res.send('Hello World!' + Math.random());
 });
 
+const tanks = [
+    {id: 1, positionX: 0, positionY: 0, level: 1},
+    {id: 2, positionX: 0, positionY: 0, level: 1},
+    {id: 3, positionX: 0, positionY: 0, level: 1},
+    {id: 4, positionX: 0, positionY: 0, level: 1},
+]
+
 io.on('connection', function(socket){
-    console.log('a user connected');
+
     io.emit('chat message', { user: "Сервер", msg: 'Кое кто подключился'});
   
     socket.on('chat message', function(res){

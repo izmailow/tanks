@@ -1,0 +1,6 @@
+.tank-wrap {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid red;
+}

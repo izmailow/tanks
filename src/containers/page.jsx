@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header } from './header'
 import { Chat } from './chat'
+import { Tank, Battlefield } from '../components'
 import './style.css';
 
 export class Page extends React.Component {
@@ -9,11 +10,14 @@ export class Page extends React.Component {
         return (
             <div className="Page">
                 <Header />
-                    <p className="Page-intro">
-                        To get started, edit <code>src/Page.js</code> and save to reload.
-                    </p>
-                    <Chat />
+                <Chat />
+                <Battlefield>
+                    <Tank color="red" />
+                    <Tank color="green" />
+                    <Tank color="yellow" />
+                    <Tank color="LightSkyBlue" />
+                </Battlefield>
             </div>
-        );
+        )
     }
 }

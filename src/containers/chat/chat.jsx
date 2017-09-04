@@ -1,5 +1,6 @@
 import React from 'react'
 import io from 'socket.io-client'
+import './style.css';
 
 export class Chat extends React.Component {
 
@@ -35,7 +36,8 @@ export class Chat extends React.Component {
 
     render () {
         return (
-            <div>
+            <div className="chat-wrap">
+                Чатик (последние 3):
                 <ul>
                     {this.state.messages.map((e, i) => (<li key={i}>{e}</li>))}
                 </ul>
