@@ -13,7 +13,7 @@ export class Page extends React.Component {
 
     componentWillMount = () => {
         document.addEventListener("keydown", this.keyDown);
-        this.socket = io('http://localhost:3001')
+        this.socket = io('http://172.29.208.186:3001')
     }
 
     render () {
