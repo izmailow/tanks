@@ -16,6 +16,10 @@ export class Page extends React.Component {
         this.socket = io('http://172.29.208.186:3001')
     }
 
+    componentWillUnmount = () => {
+        this.socket.close();
+    }
+
     render () {
         return (
             <div className="Page">

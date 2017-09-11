@@ -7,10 +7,10 @@ app.get('/', function(req, res){
 });
 
 const tanks = [
-    {id: 1, positionX: 0, positionY: 0, level: 1},
-    {id: 2, positionX: 10, positionY: 10, level: 1},
-    {id: 3, positionX: 20, positionY: 20, level: 1},
-    {id: 4, positionX: 40, positionY: 0, level: 1},
+    {id: 1, user: null, positionX: 0, positionY: 0, level: 1},
+    {id: 2, user: null, positionX: 10, positionY: 10, level: 1},
+    {id: 3, user: null, positionX: 20, positionY: 20, level: 1},
+    {id: 4, user: null, positionX: 40, positionY: 0, level: 1},
 ]
 const clients = []
 
