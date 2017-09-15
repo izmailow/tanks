@@ -1,9 +1,28 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var crypto = require('crypto');
 
-app.get('/', function(req, res){
-  res.send('Hello World!' + Math.random());
+const users = [
+    {name: "guest", pass: "", sesionID: null},
+    {name: "admin", pass: "admin", sesionID: null}
+]
+
+app.get('/api', function(req, res){
+    let loginned = false;
+    users.forEach(function(user) {
+        if (user.name === req.query.name && user.pass === req.query.pass){
+
+            user.sesionID = crypto.randomBytes(20).toString('hex')
+            res.send(JSON.stringify(user))
+            loginned = true
+            return false
+        }
+    }, this)
+    if (!loginned) {
+        res.send(JSON.stringify({error: 1}))
+    }
+    //res.send('Hello World!' + Math.random());
 });
 
 const tanks = [

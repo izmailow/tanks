@@ -1,4 +1,5 @@
 import React from 'react'
+import { TextField } from 'material-ui'
 import './style.css';
 
 export class Chat extends React.Component {
@@ -36,11 +37,8 @@ export class Chat extends React.Component {
     render () {
         return (
             <div className="chat-wrap">
-                Чатик (последние 3):
-                <ul>
-                    {this.state.messages.map((e, i) => (<li key={i}>{e.user}: {e.msg}</li>))}
-                </ul>
-                <input type="text" onKeyUp={this.handleSend}/>
+                {this.state.messages.map((e, i) => (<p key={i}>{e.user}: {e.msg}</p>))}
+                <TextField hintText="сообщенька" onKeyUp={this.handleSend} fullWidth/>
                 Пользователей: {this.state.clients.length}
             </div>
         )
