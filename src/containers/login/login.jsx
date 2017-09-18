@@ -1,18 +1,20 @@
 import React from 'react'
 import axios from 'axios'
-import { RaisedButton, TextField } from 'material-ui'
+import { RaisedButton, TextField, CircularProgress } from 'material-ui'
 import { Redirect } from 'react-router'
 import './style.css'
 
 export class Login extends React.Component {
     state = {
         status: "",
-        message: ""
+        message: "",
+        login: "",
+        pass: "",
     }
 
     click = () => {
-        this.setState({status:"logignig", message: ""})
-        axios.get('/api/?name=guest&pass=', {
+        this.setState({status:"authorization", message: ""})
+        axios.get(`/api/?login=${this.state.login}&pass=${this.state.pass}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
@@ -21,7 +23,7 @@ export class Login extends React.Component {
                 console.log(response)
                 //const resp = JSON.parse(response)
                 if (response.data.sesionID) {
-                    this.setState({status:"login", message: "Успешно! Перенапраляю."})
+                    this.setState({status:"authorized", message: "Успешно! Перенапраляю."})
                     window.location.replace("/tanks")
                 } else {
                     this.setState({status:"", message: "Что то не верно."})
@@ -32,19 +34,32 @@ export class Login extends React.Component {
         })
     }
 
+    onLoginChange = (e) => {
+        this.setState({login: e.target.value})
+    }
+
+    onPassChange = (e) => {
+        this.setState({pass: e.target.value})
+    }
+
     render () {
         return (
             <div className="login">
                 <h3>Welcome</h3>
-                <TextField name="login" hintText="Логин"/>
-                <TextField name="pass" hintText="Пароль" type="password"/>
-                <RaisedButton
-                    label="Войти"
-                    primary
-                    //href="tanks"
-                    disabled={this.state.status !== ""}
-                    onClick={this.click}
-                />
+                <p>
+                    <TextField name="login" floatingLabelText="Логин" onChange={this.onLoginChange} />
+                    <TextField name="pass" floatingLabelText="Пароль" type="password" onChange={this.onPassChange} />
+                </p>
+                <p>
+                    <RaisedButton
+                        label="Войти"
+                        primary
+                        //href="tanks"
+                        disabled={this.state.status !== ""}
+                        onClick={this.click}
+                    />
+                </p>
+                {this.state.status && <CircularProgress />}
                 {this.state.message &&
                 <p>
                     {this.state.message}

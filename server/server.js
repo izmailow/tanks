@@ -4,14 +4,15 @@ var io = require('socket.io')(http);
 var crypto = require('crypto');
 
 const users = [
-    {name: "guest", pass: "", sesionID: null},
-    {name: "admin", pass: "admin", sesionID: null}
+    {login: "admin", pass: "admin", sesionID: null, socket: null},
+    {login: "guest", pass: "", sesionID: null, socket: null},
+    {login: "", pass: "", sesionID: null, socket: null}
 ]
 
 app.get('/api', function(req, res){
     let loginned = false;
     users.forEach(function(user) {
-        if (user.name === req.query.name && user.pass === req.query.pass){
+        if (user.login === req.query.login && user.pass === req.query.pass){
 
             user.sesionID = crypto.randomBytes(20).toString('hex')
             res.send(JSON.stringify(user))
