@@ -25,12 +25,14 @@ export class Page extends React.Component {
             <div className="Page">
                 <Header />
                 <Chat socket={this.socket}/>
+                {/*
                 <Battlefield>
                     <Tank id={1} color="red" socket={this.socket} />
                     <Tank id={2} color="green" socket={this.socket} />
                     <Tank id={3} color="yellow" socket={this.socket} />
                     <Tank id={4} color="LightSkyBlue" socket={this.socket} />
                 </Battlefield>
+                */}
             </div>
         )
     }

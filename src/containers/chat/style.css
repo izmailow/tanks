@@ -1,7 +1,7 @@
 .chat-wrap {
-    position: absolute;
+    /*position: absolute;*/
     right: 0px;
-    width: 200px;
-    border: 1px solid #333;
+    width: 600px;
     padding: 10px;
+    margin: 0 auto;
 }

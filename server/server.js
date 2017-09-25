@@ -2,6 +2,10 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var crypto = require('crypto');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const users = [
     {login: "admin", pass: "admin", sesionID: null, socket: null},
@@ -9,10 +13,10 @@ const users = [
     {login: "", pass: "", sesionID: null, socket: null}
 ]
 
-app.get('/api', function(req, res){
+app.post('/api', function(req, res){
     let loginned = false;
     users.forEach(function(user) {
-        if (user.login === req.query.login && user.pass === req.query.pass){
+        if (user.login === req.body.login && user.pass === req.body.pass){
 
             user.sesionID = crypto.randomBytes(20).toString('hex')
             res.send(JSON.stringify(user))
@@ -47,6 +51,14 @@ io.on('connection', function(socket){
             msg: res.msg,
             clients: clients
         });
+        if (res.msg === "Odin?") {
+            io.emit('chat message', {
+                user: 'Сервер',
+                msg: 'I`m here',
+                clients: clients
+            });
+        }
+
     });
 
     socket.on('disconnect', function() {

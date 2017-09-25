@@ -9,9 +9,10 @@ export class Header extends React.Component {
             <div className="Page-header-wrap">
                 <div className="Page-header">
                     <img src={logo} className="Page-logo" alt="logo" />
-                    <h2>WEB sockets</h2>
-                    <div>USERNAME</div>
-                    <div>rating</div>
+                    <h2>WEB <div style={{animation: 'Page-logo-spin infinite 20s linear',
+                        display: 'inline-block'
+                    }}>$</div>ockets</h2>
+                    <div>Anonymous</div>
                     <RaisedButton href="/" label="Выход" primary/>
                 </div>
             </div>

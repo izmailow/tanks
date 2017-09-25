@@ -15,6 +15,7 @@ export class Chat extends React.Component {
                 messages: [...this.state.messages, {user: message.user, msg: message.msg}],
                 clients: message.clients
             })
+            /*
             if (this.state.messages.length > 3) {
                 clearTimeout(this.timer);
 
@@ -23,7 +24,7 @@ export class Chat extends React.Component {
                         messages: this.state.messages.splice(this.state.messages.length - 3)
                     })
                 }, 3000)
-            }
+            }*/
         })
     }
 
@@ -38,7 +39,7 @@ export class Chat extends React.Component {
         return (
             <div className="chat-wrap">
                 {this.state.messages.map((e, i) => (<p key={i}>{e.user}: {e.msg}</p>))}
-                <TextField hintText="сообщенька" onKeyUp={this.handleSend} fullWidth/>
+                <TextField onKeyUp={this.handleSend} fullWidth floatingLabelText="сообщенька" />
                 Пользователей: {this.state.clients.length}
             </div>
         )

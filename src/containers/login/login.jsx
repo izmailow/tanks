@@ -14,10 +14,9 @@ export class Login extends React.Component {
 
     click = () => {
         this.setState({status:"authorization", message: ""})
-        axios.get(`/api/?login=${this.state.login}&pass=${this.state.pass}`, {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            }
+        axios.post(`/api`, {
+            login: this.state.login,
+            pass: this.state.pass
         }).then(
             (response) => {
                 console.log(response)
